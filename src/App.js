@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import img from './assets/images/accueil.png';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="all">
+			<div className="d-flex flex-column flex-fill">
+				<Header />
+				<main className="flex-fill">
+					<div className="texte">
+						<span className="titre">
+							Adieu longues listes ennuyeuses, fini les manuels
+							interminables.
+						</span>
+						<span className="sous-titre">
+							Des capsules de connaissance, portables, rapides,
+							personnalisables, adaptées à chaque matière. Que vous
+							étudiiez les mathématiques, la biologie, l'histoire, ou
+							n'importe quelle autre matière, les flashcards vous offrent
+							un moyen éprouvé d'accélérer votre apprentissage.
+						</span>
+						<div className="mt-15">
+							<button className="btn btn-black">
+								Crée tes flash-cards
+							</button>
+						</div>
+					</div>
+					<div className="image">
+						<img src={img} alt="" />
+					</div>
+				</main>
+				<Footer />
+			</div>
+		</div>
+	);
 }
 
 export default App;

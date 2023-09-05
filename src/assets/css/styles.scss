@@ -1,0 +1,121 @@
+/* Variables */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Nuosu+SIL&family=Open+Sans&family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Roboto+Condensed:wght@300&family=Roboto:wght@100&family=Rubik:ital@1&display=swap');
+:root {
+	--primary-color: #0cc0df;
+	--secondary-color: #ffde59;
+	--black: #1a2529;
+	--white: #fffefe;
+	--font-family: 'Poppins', sans-serif;
+	--font-size-small: 12px;
+	--font-size: 14px;
+	--font-size-large: 20px;
+	--font-size-larger: 25px;
+	--font-size-xlarge: 40px;
+	--line-height-xlarge: 40px;
+	--gray-dark: #545454;
+	--gray: #737373;
+	--gray-light: #d9d9d9;
+	--border-radius: 4px;
+	--box-shadow: 0 6px 9px 0 rgba(251, 250, 250, 0.7);
+}
+
+body {
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	padding: 0;
+	margin: 0;
+	color: var(--white);
+}
+
+.all {
+	background-color: var(--primary-color);
+
+	min-height: 100vh;
+	padding: 0 10vw;
+	display: flex;
+	position: relative;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	.texte {
+		display: flex;
+		flex-direction: column;
+		flex: 0.9;
+		.titre {
+			font-size: var(--font-size-xlarge);
+			line-height: var(--line-height-xlarge);
+		}
+		.sous-titre {
+			font-size: var(--font-size);
+		}
+	}
+}
+
+/* flex */
+.d-flex {
+	display: flex;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.flex-fill {
+	flex: 1 1 auto;
+}
+
+.justify-content-center {
+	justify-content: center;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-column-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/* margin& padding */
+
+.mt-15 {
+	margin-top: 15px;
+}
+
+/* général */
+
+.btn {
+	padding: 10px 15px;
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+	border: none;
+}
+
+.btn-primary {
+	background-color: var(--primary-color);
+	color: var(--white);
+}
+
+.btn-black {
+	background-color: var(--black);
+	color: var(--white);
+}
