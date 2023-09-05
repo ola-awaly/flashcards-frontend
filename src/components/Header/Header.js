@@ -10,7 +10,7 @@ function Header() {
 			<header className={styles.header}>
 				<span>
 					<i
-						class={`fa-solid fa-bars ${styles.bar}`}
+						className={`fa-solid fa-bars ${styles.bar}`}
 						onClick={() => setShowMenu(!showMenu)}
 					></i>
 				</span>
