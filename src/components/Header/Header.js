@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Header.module.scss';
 import Menu from './components/Menu/Menu';
-
+import { Link } from 'react-router-dom';
 function Header() {
 	const [showMenu, setShowMenu] = useState(false);
 
@@ -14,7 +14,11 @@ function Header() {
 						onClick={() => setShowMenu(!showMenu)}
 					></i>
 				</span>
-				<span className={styles.logo}>Flash & Lache</span>
+				<span>
+					<Link to="/" className={styles.logo}>
+						Flash & Lache
+					</Link>
+				</span>
 			</header>
 			<Menu showMenu={showMenu} setShowMenu={setShowMenu} />
 		</>

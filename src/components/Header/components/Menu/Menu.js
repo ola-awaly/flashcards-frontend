@@ -1,5 +1,5 @@
 import styles from './Menu.module.scss';
-
+import { Link } from 'react-router-dom';
 function Menu({ showMenu, setShowMenu }) {
 	const closeMenu = () => {
 		setShowMenu(false);
@@ -27,7 +27,9 @@ function Menu({ showMenu, setShowMenu }) {
 						<i className="fa-solid fa-right-to-bracket"></i>Je me connecte
 					</li>
 					<li>
-						<i className="fa-solid fa-user-plus"></i>Je crée un compte
+						<Link to="/inscription" onClick={closeMenu}>
+							<i className="fa-solid fa-user-plus"></i>Je crée un compte
+						</Link>
 					</li>
 				</ul>
 			</div>
