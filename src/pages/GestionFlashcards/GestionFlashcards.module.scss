@@ -1,0 +1,71 @@
+.gestionFlashcards {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+	gap: 20px;
+	background-color: var(--black);
+	border-radius: var(--border-radius);
+	h1 {
+		border-bottom: 1px solid var(--white);
+	}
+	.listFlashcards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+		justify-content: center;
+		list-style: none;
+		li {
+			background-color: var(--white);
+			color: var(--black);
+			padding: 25px;
+			border: none;
+			border-radius: var(--border-radius);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			position: relative;
+
+			& > span:nth-child(2) {
+				font-size: var(--font-size-small);
+				color: var(--gray);
+				font-style: i;
+			}
+			& > span:nth-child(3) {
+				position: absolute;
+				top: -12px;
+				right: 5px;
+				color: var(--white);
+				background-color: var(--gray);
+				font-size: var(--font-size-smaller);
+				border: none;
+				border-radius: var(--border-radius);
+				padding: 5px 10px;
+				box-shadow: var(--box-shadow-gray);
+				&.private {
+					background-color: var(--gray);
+				}
+				&.public {
+					background-color: var(--primary-color);
+				}
+			}
+			& > div {
+				position: absolute;
+				right: 5px;
+				bottom: 0;
+				display: flex;
+				gap: 5px;
+				display: none;
+				span {
+					color: var(--primary-color);
+				}
+			}
+			&:hover {
+				div {
+					display: flex;
+				}
+			}
+		}
+	}
+}

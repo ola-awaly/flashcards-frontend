@@ -1,0 +1,9 @@
+.errorPage {
+	flex: 1;
+	background-color: var(--black);
+	color: var(--error);
+	font-size: var(--font-size-large);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

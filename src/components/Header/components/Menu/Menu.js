@@ -23,8 +23,13 @@ function Menu({ showMenu, setShowMenu }) {
 			>
 				<ul>
 					<li>
-						<i className="fa-solid fa-plus"></i>Je crée mes propres
-						Flash-cards
+						<Link
+							to={user ? `/myflashcards/${user.id}` : `/myflashcards/`}
+							onClick={closeMenu}
+						>
+							<i className="fa-solid fa-plus"></i>Je crée mes propres
+							Flash-cards
+						</Link>
 					</li>
 					<li>
 						<i className="fa-solid fa-magnifying-glass"></i>Je cherche des
