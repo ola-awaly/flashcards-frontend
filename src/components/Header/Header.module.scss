@@ -18,4 +18,11 @@
 		color: var(--white);
 		text-decoration: none;
 	}
+	.headerConnected {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 5px;
+		flex: 1;
+	}
 }

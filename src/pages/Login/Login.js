@@ -1,34 +1,23 @@
-import styles from './Inscription.module.scss';
+import styles from './Login.module.scss';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { createUser } from '../../apis';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../apis/security';
-function Inscription() {
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+function Login() {
+	const { signin } = useContext(AuthContext);
 	const navigate = useNavigate();
-	const signupSchema = yup.object({
+	const loginSchema = yup.object({
 		email: yup
 			.string()
 			.required('Email Obligatoire')
 			.email('Veuillez renseigner un email valide'),
-		password: yup
-			.string()
-			.required('Mot de passe obligatoire')
-			.min(6, 'Minimum 6 caractères'),
-		confirmpassword: yup
-			.string()
-			.required('Mot de passe obligatoire')
-
-			.oneOf(
-				[yup.ref('password'), ''],
-				'les 2 mots de passe doivent correspondre'
-			),
+		password: yup.string().required('Mot de passe obligatoire'),
 	});
 	const defaultValues = {
 		email: '',
 		password: '',
-		confirmpassword: '',
 	};
 	const {
 		register,
@@ -37,18 +26,16 @@ function Inscription() {
 		setError,
 		clearErrors,
 		formState: { isSubmitting, errors },
-	} = useForm({ defaultValues, resolver: yupResolver(signupSchema) });
-	const doSignup = async (values) => {
+	} = useForm({ defaultValues, resolver: yupResolver(loginSchema) });
+	const doLogin = async (values) => {
 		console.log(values);
 		try {
 			clearErrors();
-			await createUser({
+			await signin({
 				email: values.email,
-				plainPassword: values.password,
+				password: values.password,
 			});
-			console.log(
-				await login({ email: values.email, password: values.password })
-			);
+
 			reset();
 			navigate('/');
 		} catch (error) {
@@ -58,10 +45,10 @@ function Inscription() {
 		}
 	};
 	return (
-		<div className={`${styles.inscription} flex-fill`}>
-			<h1>Je crée un compte</h1>
+		<div className={`${styles.login} flex-fill`}>
+			<h1>Je me connecte</h1>
 
-			<form onSubmit={handleSubmit(doSignup)}>
+			<form onSubmit={handleSubmit(doLogin)}>
 				<div className={styles.ligne}>
 					<label htmlFor="email">Email</label>
 					<input
@@ -88,20 +75,6 @@ function Inscription() {
 						</span>
 					)}
 				</div>
-				<div className={styles.ligne}>
-					<label htmlFor="confirm-password">Confirm Password</label>
-					<input
-						type="password"
-						id="confirm-password"
-						className={errors.confirmpassword && styles.inputError}
-						{...register('confirmpassword')}
-					/>
-					{errors.confirmpassword && (
-						<span className={styles.error}>
-							{errors.confirmpassword.message}
-						</span>
-					)}
-				</div>
 
 				{errors?.general && (
 					<div className={styles.ligne}>
@@ -110,11 +83,11 @@ function Inscription() {
 				)}
 				<div className={`${styles.ligne} align-items-center`}>
 					<button className="btn btn-primary" disabled={isSubmitting}>
-						Allez hop
+						Entrez
 					</button>
 				</div>
 			</form>
 		</div>
 	);
 }
-export default Inscription;
+export default Login;
