@@ -4,11 +4,21 @@ import { lazy } from 'react';
 import { rootLaoder } from './loaders/rootLoader';
 import { gestionFlashcardsLoader } from './loaders/gestionFlashcardsLoader';
 import Error from './pages/Error/Error';
+import { matiereNewLoader } from './loaders/matiereNewLoader';
+import { matiereEditLoader } from './loaders/matiereEditLoader';
 const Homepage = lazy(() => import('./pages/Homepage/Homepage'));
 const Inscription = lazy(() => import('./pages/Inscription/Inscription'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const GestionFlashcards = lazy(() =>
 	import('./pages/GestionFlashcards/GestionFlashcards')
+);
+const ChapitresParMatiere = lazy(() =>
+	import(
+		'./pages/GestionFlashcards/Chapitres/ChapitresParMatiere/ChapitresParMatiere'
+	)
+);
+const MatiereEdit = lazy(() =>
+	import('./pages/GestionFlashcards/Matieres/MatiereEdit/MatiereEdit')
 );
 export const router = createBrowserRouter([
 	{
@@ -38,6 +48,21 @@ export const router = createBrowserRouter([
 				errorElement: <Error />,
 				loader: async ({ params }) =>
 					await gestionFlashcardsLoader(params.userid),
+				children: [],
+			},
+			{
+				path: '/matiere/:matiereid/chapitres',
+				element: <ChapitresParMatiere />,
+			},
+			{
+				path: '/matiere/:matiereid/edit',
+				loader: ({ params }) => matiereEditLoader(params.matiereid),
+				element: <MatiereEdit />,
+			},
+			{
+				path: '/matiere/new',
+				loader: matiereNewLoader,
+				element: <MatiereEdit />,
 			},
 		],
 	},
