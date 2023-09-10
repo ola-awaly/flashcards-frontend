@@ -1,0 +1,20 @@
+.homepage {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	align-items: center;
+	gap: 20px;
+	background-color: var(--black);
+	border-radius: var(--border-radius);
+
+	h1,
+	h2 {
+		border-bottom: 1px solid var(--white);
+	}
+	a,
+	a:hover {
+		text-decoration: none;
+		color: inherit;
+	}
+}

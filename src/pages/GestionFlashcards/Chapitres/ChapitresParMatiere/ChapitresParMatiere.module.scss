@@ -1,20 +1,19 @@
-.listFlashcards {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: center;
+.listeChapitresParMatiere {
 	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	li {
 		background-color: var(--white);
 		color: var(--black);
-		padding: 25px;
-		border: none;
 		border-radius: var(--border-radius);
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		padding: 25px;
+		border: none;
 		position: relative;
-
 		& > span:nth-child(2) {
 			font-size: var(--font-size-small);
 			color: var(--gray);
@@ -55,4 +54,9 @@
 			}
 		}
 	}
+}
+
+.tools {
+	display: flex;
+	gap: 10px;
 }

@@ -53,7 +53,7 @@ function MatiereEdit() {
 		}
 	};
 	return (
-		<div className={`${styles.matiereEdit} flex-fill`}>
+		<>
 			{data.mode === 'new' ? (
 				<h1>Nouvelle Matiere </h1>
 			) : (
@@ -100,7 +100,7 @@ function MatiereEdit() {
 					</button>
 				</div>
 			</form>
-		</div>
+		</>
 	);
 }
 export default MatiereEdit;

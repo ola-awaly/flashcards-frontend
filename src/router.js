@@ -6,6 +6,8 @@ import { gestionFlashcardsLoader } from './loaders/gestionFlashcardsLoader';
 import Error from './pages/Error/Error';
 import { matiereNewLoader } from './loaders/matiereNewLoader';
 import { matiereEditLoader } from './loaders/matiereEditLoader';
+import { chapitreParMatiereLoader } from './loaders/chapitresParMatiereLoader';
+import HomepageGestionFlashcards from './pages/GestionFlashcards/HomepageGestionFlashcards';
 const Homepage = lazy(() => import('./pages/Homepage/Homepage'));
 const Inscription = lazy(() => import('./pages/Inscription/Inscription'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -43,26 +45,41 @@ export const router = createBrowserRouter([
 				element: <Login />,
 			},
 			{
-				path: 'myflashcards/:userid',
-				element: <GestionFlashcards />,
-				errorElement: <Error />,
-				loader: async ({ params }) =>
-					await gestionFlashcardsLoader(params.userid),
-				children: [],
-			},
-			{
-				path: '/matiere/:matiereid/chapitres',
-				element: <ChapitresParMatiere />,
-			},
-			{
-				path: '/matiere/:matiereid/edit',
-				loader: ({ params }) => matiereEditLoader(params.matiereid),
-				element: <MatiereEdit />,
-			},
-			{
-				path: '/matiere/new',
-				loader: matiereNewLoader,
-				element: <MatiereEdit />,
+				path: 'myflashcards/',
+				element: <HomepageGestionFlashcards />,
+				children: [
+					{
+						path: ':userid',
+						element: <GestionFlashcards />,
+						errorElement: <Error />,
+						loader: async ({ params }) =>
+							await gestionFlashcardsLoader(params.userid),
+						children: [],
+					},
+					{
+						path: 'matiere/:matiereid',
+						children: [
+							{
+								index: true,
+								loader: ({ params }) =>
+									chapitreParMatiereLoader(params.matiereid),
+								element: <ChapitresParMatiere />,
+							},
+							{
+								path: 'edit',
+								loader: ({ params }) =>
+									matiereEditLoader(params.matiereid),
+								element: <MatiereEdit />,
+							},
+						],
+					},
+
+					{
+						path: 'matiere/new',
+						loader: matiereNewLoader,
+						element: <MatiereEdit />,
+					},
+				],
 			},
 		],
 	},

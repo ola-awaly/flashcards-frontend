@@ -15,13 +15,13 @@ function GestionFlashcards() {
 	};
 
 	return (
-		<div className={styles.gestionFlashcards}>
+		<>
 			<h1>Mes matières</h1>
 
 			{matieres && (
 				<ul className={styles.listFlashcards}>
 					{matieres.map((mat) => (
-						<Link to={`/matiere/${mat.id}/chapitres`} key={mat.id}>
+						<Link to={`/myflashcards/matiere/${mat.id}`} key={mat.id}>
 							<li as="Link">
 								<span>{mat.nom}</span>
 								<span>{mat.nbreChapitre} chapitres</span>
@@ -36,7 +36,7 @@ function GestionFlashcards() {
 								</span>
 								<div>
 									<span>
-										<Link to={`/matiere/${mat.id}/edit`}>
+										<Link to={`/myflashcards/matiere/${mat.id}/edit`}>
 											<i className="fa-solid fa-pencil"></i>
 										</Link>
 									</span>
@@ -53,10 +53,10 @@ function GestionFlashcards() {
 				</ul>
 			)}
 
-			<Link className="btn btn-primary" to="/matiere/new">
+			<Link className="btn btn-primary" to="/myflashcards/matiere/new">
 				+ Nouvelle Matière
 			</Link>
-		</div>
+		</>
 	);
 }
 
