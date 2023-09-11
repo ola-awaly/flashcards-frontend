@@ -21,7 +21,6 @@ export async function login(credentials) {
 		body: JSON.stringify(credentials),
 	});
 	if (response.ok) {
-		console.log(response);
 		let body = await response.json();
 		localStorage.setItem('token', body.token);
 		return body.user;

@@ -54,6 +54,7 @@ export const router = createBrowserRouter([
 			{
 				path: 'myflashcards/',
 				element: <HomepageGestionFlashcards />,
+				errorElement: <Error />,
 				children: [
 					{
 						path: ':userid',
@@ -65,24 +66,29 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: 'matiere/:matiereid',
+						errorElement: <Error />,
 						children: [
 							{
 								path: '',
+								errorElement: <Error />,
 								loader: ({ params }) =>
 									chapitreParMatiereLoader(params.matiereid),
 								element: <ChapitresParMatiere />,
 							},
 							{
 								path: 'chapitre/new',
+								errorElement: <Error />,
 								loader: ({ params }) =>
 									chapitreNewLoader(params.matiereid),
 								element: <ChapitreEdit />,
 							},
 							{
 								path: 'chapitre/:chapitreid',
+								errorElement: <Error />,
 							},
 							{
 								path: 'chapitre/:chapitreid/edit',
+								errorElement: <Error />,
 								loader: ({ params }) =>
 									chapitreEditLoader(params.chapitreid),
 								element: <ChapitreEdit />,
@@ -90,6 +96,7 @@ export const router = createBrowserRouter([
 
 							{
 								path: 'edit',
+								errorElement: <Error />,
 								loader: ({ params }) =>
 									matiereEditLoader(params.matiereid),
 								element: <MatiereEdit />,
@@ -99,6 +106,7 @@ export const router = createBrowserRouter([
 
 					{
 						path: 'matiere/new',
+						errorElement: <Error />,
 						loader: matiereNewLoader,
 						element: <MatiereEdit />,
 					},

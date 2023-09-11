@@ -35,7 +35,10 @@ export async function getChapitre(id) {
 		},
 	});
 	if (response.ok) return response.json();
-	else throw new Error('Erreur lors de la récupération du chapitre');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function modifierChapitre(id, chapitre) {
@@ -60,5 +63,5 @@ export async function deleteChapitre(id) {
 		},
 	});
 	if (response.ok) return true;
-	else throw new Error('Erreur lors de la suppression du chapitre');
+	else throw new Error(response.message);
 }

@@ -7,23 +7,23 @@ function AuthProvider({ children }) {
 	const currentUser = useLoaderData();
 	const navigate = useNavigate();
 
-	console.log(currentUser);
 	const [user, setUser] = useState(currentUser);
+	const [expired, setExpired] = useState(currentUser === 'expired');
 	const signin = async (credentials) => {
-		console.log(credentials);
 		const connectedUser = await login(credentials);
 		setUser(connectedUser);
-		console.log(connectedUser);
+		setExpired(false);
 	};
 	const signout = () => {
 		logout();
 		setUser(null);
+		setExpired(false);
 	};
 	useEffect(() => {
-		if (currentUser === 'expired') navigate('/login');
-	}, [currentUser, navigate]);
+		if (currentUser === 'expired' || expired === true) navigate('/login');
+	}, [currentUser, navigate, expired]);
 	return (
-		<AuthContext.Provider value={{ user, signin, signout }}>
+		<AuthContext.Provider value={{ user, signin, signout, setExpired }}>
 			{children}
 		</AuthContext.Provider>
 	);
