@@ -44,7 +44,7 @@ export async function getCurrentUser() {
 		if (response.ok) return response.json();
 		else {
 			logout();
-			return null;
+			return 'expired';
 		}
 	} else return null;
 }

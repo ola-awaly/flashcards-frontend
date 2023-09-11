@@ -84,7 +84,7 @@ function MatiereEdit() {
 						<option value="private">Privé</option>
 					</select>
 
-					{errors.nom && (
+					{errors.status && (
 						<span className={styles.error}>{errors.status.message}</span>
 					)}
 				</div>

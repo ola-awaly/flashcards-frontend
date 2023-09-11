@@ -7,12 +7,16 @@ import Error from './pages/Error/Error';
 import { matiereNewLoader } from './loaders/matiereNewLoader';
 import { matiereEditLoader } from './loaders/matiereEditLoader';
 import { chapitreParMatiereLoader } from './loaders/chapitresParMatiereLoader';
-import HomepageGestionFlashcards from './pages/GestionFlashcards/HomepageGestionFlashcards';
+import { chapitreNewLoader } from './loaders/chapitreNewLoader';
+import { chapitreEditLoader } from './loaders/chapitreEditLoader';
 const Homepage = lazy(() => import('./pages/Homepage/Homepage'));
 const Inscription = lazy(() => import('./pages/Inscription/Inscription'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const GestionFlashcards = lazy(() =>
 	import('./pages/GestionFlashcards/GestionFlashcards')
+);
+const HomepageGestionFlashcards = lazy(() =>
+	import('./pages/GestionFlashcards/HomepageGestionFlashcards')
 );
 const ChapitresParMatiere = lazy(() =>
 	import(
@@ -21,6 +25,9 @@ const ChapitresParMatiere = lazy(() =>
 );
 const MatiereEdit = lazy(() =>
 	import('./pages/GestionFlashcards/Matieres/MatiereEdit/MatiereEdit')
+);
+const ChapitreEdit = lazy(() =>
+	import('./pages/GestionFlashcards/Chapitres/ChapitreEdit/ChapitreEdit')
 );
 export const router = createBrowserRouter([
 	{
@@ -60,11 +67,27 @@ export const router = createBrowserRouter([
 						path: 'matiere/:matiereid',
 						children: [
 							{
-								index: true,
+								path: '',
 								loader: ({ params }) =>
 									chapitreParMatiereLoader(params.matiereid),
 								element: <ChapitresParMatiere />,
 							},
+							{
+								path: 'chapitre/new',
+								loader: ({ params }) =>
+									chapitreNewLoader(params.matiereid),
+								element: <ChapitreEdit />,
+							},
+							{
+								path: 'chapitre/:chapitreid',
+							},
+							{
+								path: 'chapitre/:chapitreid/edit',
+								loader: ({ params }) =>
+									chapitreEditLoader(params.chapitreid),
+								element: <ChapitreEdit />,
+							},
+
 							{
 								path: 'edit',
 								loader: ({ params }) =>

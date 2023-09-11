@@ -13,7 +13,9 @@ function GestionFlashcards() {
 			navigate(0);
 		}
 	};
-
+	const goTOEdit = (id) => {
+		navigate(`/myflashcards/matiere/${id}`);
+	};
 	return (
 		<>
 			<h1>Mes matières</h1>
@@ -21,34 +23,32 @@ function GestionFlashcards() {
 			{matieres && (
 				<ul className={styles.listFlashcards}>
 					{matieres.map((mat) => (
-						<Link to={`/myflashcards/matiere/${mat.id}`} key={mat.id}>
-							<li as="Link">
-								<span>{mat.nom}</span>
-								<span>{mat.nbreChapitre} chapitres</span>
-								<span
-									className={
-										mat.status === 'private'
-											? styles.private
-											: styles.public
-									}
-								>
-									{mat.status}
+						<li onClick={() => goTOEdit(mat.id)} key={mat.id}>
+							<span>{mat.nom}</span>
+							<span>{mat.nbreChapitre} chapitres</span>
+							<span
+								className={
+									mat.status === 'private'
+										? styles.private
+										: styles.public
+								}
+							>
+								{mat.status}
+							</span>
+							<div>
+								<a href={`/myflashcards/matiere/${mat.id}/edit`}>
+									<span>
+										<i className="fa-solid fa-pencil"></i>
+									</span>
+								</a>
+								<span>
+									<i
+										className="fa-solid fa-trash-can"
+										onClick={(e) => handleClickDelete(mat.id, e)}
+									></i>
 								</span>
-								<div>
-									<span>
-										<Link to={`/myflashcards/matiere/${mat.id}/edit`}>
-											<i className="fa-solid fa-pencil"></i>
-										</Link>
-									</span>
-									<span>
-										<i
-											className="fa-solid fa-trash-can"
-											onClick={(e) => handleClickDelete(mat.id, e)}
-										></i>
-									</span>
-								</div>
-							</li>
-						</Link>
+							</div>
+						</li>
 					))}
 				</ul>
 			)}

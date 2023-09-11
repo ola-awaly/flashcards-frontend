@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { login, logout } from '../../apis/security';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 
 function AuthProvider({ children }) {
 	const currentUser = useLoaderData();
+	const navigate = useNavigate();
+
 	console.log(currentUser);
 	const [user, setUser] = useState(currentUser);
 	const signin = async (credentials) => {
@@ -17,6 +19,9 @@ function AuthProvider({ children }) {
 		logout();
 		setUser(null);
 	};
+	useEffect(() => {
+		if (currentUser === 'expired') navigate('/login');
+	}, [currentUser, navigate]);
 	return (
 		<AuthContext.Provider value={{ user, signin, signout }}>
 			{children}
