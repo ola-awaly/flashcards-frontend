@@ -1,5 +1,6 @@
 import { getChapitresByMatiere } from '../apis/chapitres';
 
-export function chapitreParMatiereLoader(id) {
-	return getChapitresByMatiere(id);
+export async function chapitreParMatiereLoader(matiereid) {
+	let chapitres = await getChapitresByMatiere(matiereid);
+	return { chapitres, matiereid };
 }

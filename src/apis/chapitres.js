@@ -7,11 +7,10 @@ export async function getChapitresByMatiere(id) {
 		},
 	});
 	if (response.ok) return response.json();
-	else
-		throw new Error(
-			'Une erreur est survenue lors de la récupération des chapitres de la matière no.' +
-				id
-		);
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function createChapitre(nouveauChapitre) {
@@ -24,7 +23,10 @@ export async function createChapitre(nouveauChapitre) {
 		body: JSON.stringify(nouveauChapitre),
 	});
 	if (response.ok) return response.json();
-	else throw new Error('Erreur lors de la création du chapitre');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function getChapitre(id) {
@@ -51,7 +53,10 @@ export async function modifierChapitre(id, chapitre) {
 		body: JSON.stringify(chapitre),
 	});
 	if (response.ok) return response.json();
-	else throw new Error('Erreur lors de la modification du chapitre');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function deleteChapitre(id) {
@@ -63,5 +68,8 @@ export async function deleteChapitre(id) {
 		},
 	});
 	if (response.ok) return true;
-	else throw new Error(response.message);
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }

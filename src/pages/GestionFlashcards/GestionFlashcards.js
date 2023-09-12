@@ -13,6 +13,10 @@ function GestionFlashcards() {
 			navigate(0);
 		}
 	};
+	const handleClickEdit = async (id, e) => {
+		e.stopPropagation();
+		navigate(`/myflashcards/matiere/${id}/edit`);
+	};
 	const goTOEdit = (id) => {
 		navigate(`/myflashcards/matiere/${id}`);
 	};
@@ -36,11 +40,13 @@ function GestionFlashcards() {
 								{mat.status}
 							</span>
 							<div>
-								<a href={`/myflashcards/matiere/${mat.id}/edit`}>
-									<span>
-										<i className="fa-solid fa-pencil"></i>
-									</span>
-								</a>
+								<span>
+									<i
+										onClick={(e) => handleClickEdit(mat.id, e)}
+										className="fa-solid fa-pencil"
+									></i>
+								</span>
+
 								<span>
 									<i
 										className="fa-solid fa-trash-can"

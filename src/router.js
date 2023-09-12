@@ -9,6 +9,15 @@ import { matiereEditLoader } from './loaders/matiereEditLoader';
 import { chapitreParMatiereLoader } from './loaders/chapitresParMatiereLoader';
 import { chapitreNewLoader } from './loaders/chapitreNewLoader';
 import { chapitreEditLoader } from './loaders/chapitreEditLoader';
+import { flashcardsParChapitreLoader } from './loaders/flashcardsParChapitre';
+const FlashcardsEdit = lazy(() =>
+	import('./pages/GestionFlashcards/Flashcards/FlashcardEdit/FlashcardsEdit')
+);
+const FlashcardsParChapitre = lazy(() =>
+	import(
+		'./pages/GestionFlashcards/Flashcards/FlashcardsParChapitre/FlashcardsParChapitre'
+	)
+);
 const Homepage = lazy(() => import('./pages/Homepage/Homepage'));
 const Inscription = lazy(() => import('./pages/Inscription/Inscription'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -85,13 +94,31 @@ export const router = createBrowserRouter([
 							{
 								path: 'chapitre/:chapitreid',
 								errorElement: <Error />,
-							},
-							{
-								path: 'chapitre/:chapitreid/edit',
-								errorElement: <Error />,
-								loader: ({ params }) =>
-									chapitreEditLoader(params.chapitreid),
-								element: <ChapitreEdit />,
+
+								children: [
+									{
+										path: '',
+										errorElement: <Error />,
+										loader: ({ params }) =>
+											flashcardsParChapitreLoader(
+												params.chapitreid,
+												params.matiereid
+											),
+										element: <FlashcardsParChapitre />,
+									},
+									{
+										path: 'edit',
+										errorElement: <Error />,
+										loader: ({ params }) =>
+											chapitreEditLoader(params.chapitreid),
+										element: <ChapitreEdit />,
+									},
+									{
+										path: 'flashcards/new',
+										errorElement: <Error />,
+										element: <FlashcardsEdit />,
+									},
+								],
 							},
 
 							{
@@ -111,6 +138,10 @@ export const router = createBrowserRouter([
 						element: <MatiereEdit />,
 					},
 				],
+			},
+			{
+				path: '*',
+				element: <Homepage />,
 			},
 		],
 	},

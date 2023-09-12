@@ -8,8 +8,8 @@ import { AuthContext } from '../../../../contexts/AuthContext';
 import { createChapitre, modifierChapitre } from '../../../../apis/chapitres';
 function ChapitreEdit() {
 	const { user } = useContext(AuthContext);
-	const data = useLoaderData();
-	console.log(data.mode);
+	const { chapitre, mode } = useLoaderData();
+	console.log(mode);
 	const navigate = useNavigate();
 	const chapitreEditSchema = yup.object({
 		titre: yup.string().required('Titre Obligatoire'),
@@ -17,9 +17,9 @@ function ChapitreEdit() {
 		status: yup.string().required('Status obligatoire'),
 	});
 	const defaultValues = {
-		titre: data.chapitre.titre,
-		ordre: data.chapitre.ordre,
-		status: data.chapitre.status,
+		titre: chapitre.titre,
+		ordre: chapitre.ordre,
+		status: chapitre.status,
 	};
 	const {
 		register,
@@ -33,15 +33,15 @@ function ChapitreEdit() {
 		console.log(values);
 		try {
 			clearErrors();
-			if (data.mode === 'new') {
+			if (mode === 'new') {
 				await createChapitre({
 					titre: values.titre,
 					ordre: values.ordre,
 					status: values.status,
-					cours: { id: data.chapitre.cours.id },
+					cours: { id: chapitre.cours.id },
 				});
 			} else {
-				await modifierChapitre(data.chapitre.id, {
+				await modifierChapitre(chapitre.id, {
 					titre: values.titre,
 					ordre: values.ordre,
 					status: values.status,
@@ -49,7 +49,7 @@ function ChapitreEdit() {
 			}
 
 			reset();
-			navigate('/myflashcards/matiere/' + data.chapitre.cours.id);
+			navigate('/myflashcards/matiere/' + chapitre.cours.id);
 		} catch (error) {
 			console.log(error.message);
 			setError('general', { type: 'general', message: error.message });
@@ -59,7 +59,7 @@ function ChapitreEdit() {
 
 	return (
 		<>
-			{data.mode === 'new' ? (
+			{mode === 'new' ? (
 				<h1>Nouveau chapitre </h1>
 			) : (
 				<h1>Chapitre Edition</h1>

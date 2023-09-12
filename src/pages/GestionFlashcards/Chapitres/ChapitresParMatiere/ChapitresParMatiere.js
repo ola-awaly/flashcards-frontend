@@ -5,7 +5,7 @@ import { AuthContext } from '../../../../contexts/AuthContext';
 import { deleteChapitre } from '../../../../apis/chapitres';
 function ChapitresParMatiere() {
 	const navigate = useNavigate();
-	const chapitres = useLoaderData();
+	const { chapitres } = useLoaderData();
 	const { user } = useContext(AuthContext);
 	const handleClickDelete = async (id, e) => {
 		e.preventDefault();
@@ -16,13 +16,20 @@ function ChapitresParMatiere() {
 			navigate(0);
 		}
 	};
+	const handleClickEdit = async (id, e) => {
+		e.stopPropagation();
+		navigate(`chapitre/${id}/edit`);
+	};
+	const goTOEdit = (id) => {
+		navigate(`chapitre/${id}`);
+	};
 	return (
 		<>
 			<h2>Les chapitres: {chapitres[0]?.cours.nom}</h2>
 			{chapitres && (
 				<ul className={styles.listeChapitresParMatiere}>
 					{chapitres.map((cha) => (
-						<li key={cha.id}>
+						<li key={cha.id} onClick={() => goTOEdit(cha.id)}>
 							<span>{cha.titre}</span>
 							<span>{cha.nbreFlashcards} flashcards</span>
 							<span
@@ -32,14 +39,16 @@ function ChapitresParMatiere() {
 										: styles.public
 								}
 							>
-								private
+								{cha.status}
 							</span>
 							<div>
-								<Link to={`chapitre/${cha.id}/edit`}>
-									<span>
-										<i className="fa-solid fa-pencil"></i>
-									</span>
-								</Link>
+								<span>
+									<i
+										onClick={(e) => handleClickEdit(cha.id, e)}
+										className="fa-solid fa-pencil"
+									></i>
+								</span>
+
 								<span>
 									<i
 										className="fa-solid fa-trash-can"

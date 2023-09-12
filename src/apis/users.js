@@ -9,5 +9,8 @@ export async function createUser(newUser) {
 		body: JSON.stringify(newUser),
 	});
 	if (response.ok) return response.json();
-	else throw Error("Error de création de l'utilisateur( email existe déjà ?)");
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }

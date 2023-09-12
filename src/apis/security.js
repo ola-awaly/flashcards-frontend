@@ -24,7 +24,10 @@ export async function login(credentials) {
 		let body = await response.json();
 		localStorage.setItem('token', body.token);
 		return body.user;
-	} else throw Error('Email/mot de passe invalide');
+	} else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export function logout() {

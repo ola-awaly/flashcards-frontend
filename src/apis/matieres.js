@@ -7,8 +7,10 @@ export async function getAll() {
 		},
 	});
 	if (response.ok) return response.json();
-	else
-		throw new Error('Erreur lors de la récupération de la liste de matières');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function getByUser(id) {
@@ -19,8 +21,10 @@ export async function getByUser(id) {
 		},
 	});
 	if (response.ok) return response.json();
-	else
-		throw new Error('Erreur lors de la récupération de la liste de matières');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function createMatiere(nouvelleMatiere) {
@@ -33,7 +37,10 @@ export async function createMatiere(nouvelleMatiere) {
 		body: JSON.stringify(nouvelleMatiere),
 	});
 	if (response.ok) return response.json();
-	else throw new Error('Erreur lors de la création de la matière');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function getMatiere(id) {
@@ -44,7 +51,10 @@ export async function getMatiere(id) {
 		},
 	});
 	if (response.ok) return response.json();
-	else throw new Error('Erreur lors de la récupération de la  matière');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function modifierMatiere(id, matiere) {
@@ -57,7 +67,10 @@ export async function modifierMatiere(id, matiere) {
 		body: JSON.stringify(matiere),
 	});
 	if (response.ok) return response.json();
-	else throw new Error('Erreur lors de la modification de la matière');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
 
 export async function deleteMatiere(id) {
@@ -69,5 +82,8 @@ export async function deleteMatiere(id) {
 		},
 	});
 	if (response.ok) return true;
-	else throw new Error('Erreur lors de la suppression de la  matière');
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
 }
