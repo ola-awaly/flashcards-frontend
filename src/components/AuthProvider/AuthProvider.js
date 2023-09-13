@@ -20,7 +20,11 @@ function AuthProvider({ children }) {
 		setExpired(false);
 	};
 	useEffect(() => {
-		if (currentUser === 'expired' || expired === true) navigate('/login');
+		console.log('dans auth provider');
+		if (currentUser === 'expired' || expired === true) {
+			setUser(null);
+			navigate('/login');
+		}
 	}, [currentUser, navigate, expired]);
 	return (
 		<AuthContext.Provider value={{ user, signin, signout, setExpired }}>

@@ -1,9 +1,15 @@
+import { Suspense, useContext } from 'react';
 import styles from './HomepageGestionFlashcards.module.scss';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 function HomepageGestionFlashcards() {
+	const { user } = useContext(AuthContext);
 	return (
 		<div className={styles.homepage}>
-			<Outlet />
+			{!user && <Navigate to="/login" />}
+			<Suspense>
+				<Outlet />
+			</Suspense>
 		</div>
 	);
 }

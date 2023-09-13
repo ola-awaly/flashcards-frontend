@@ -1,16 +1,30 @@
+import { deleteFlashcard } from '../../../../apis/flashcards';
 import styles from './FlashcardsParChapitre.module.scss';
-import { useLoaderData, Link } from 'react-router-dom';
+import { useLoaderData, Link, useNavigate } from 'react-router-dom';
 
 function FlashcardsParChapitre() {
+	const navigate = useNavigate();
 	const { flashcards, matiereid } = useLoaderData();
 	console.log(flashcards);
+	const handleClickDelete = async (id, e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		let mess = window.confirm('Tu veux vraiment supprimer?');
+		if (mess === true) {
+			await deleteFlashcard(id);
+			navigate(0);
+		}
+	};
 	return (
 		<>
 			<h2>Chapitre 1: Introduction</h2>
 			{flashcards && (
 				<ul className={styles.listeFlashcardsParChapitre}>
 					{flashcards.map((fl) => (
-						<li key={fl.id}>
+						<li
+							key={fl.id}
+							onClick={() => navigate(`flashcards/${fl.id}/edit`)}
+						>
 							<span>{fl.avant}</span>
 
 							<span
@@ -23,13 +37,15 @@ function FlashcardsParChapitre() {
 								{fl.status}
 							</span>
 							<div>
-								<Link>
-									<span>
-										<i className="fa-solid fa-pencil"></i>
-									</span>
-								</Link>
 								<span>
-									<i className="fa-solid fa-trash-can"></i>
+									<i className="fa-solid fa-pencil"></i>
+								</span>
+
+								<span>
+									<i
+										className="fa-solid fa-trash-can"
+										onClick={(e) => handleClickDelete(fl.id, e)}
+									></i>
 								</span>
 							</div>
 						</li>

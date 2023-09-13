@@ -10,8 +10,10 @@ import { chapitreParMatiereLoader } from './loaders/chapitresParMatiereLoader';
 import { chapitreNewLoader } from './loaders/chapitreNewLoader';
 import { chapitreEditLoader } from './loaders/chapitreEditLoader';
 import { flashcardsParChapitreLoader } from './loaders/flashcardsParChapitre';
+import { flashcardEditLoader } from './loaders/flashcardEditLoader';
+import { flashcardNewLoader } from './loaders/flashcardNewLoader';
 const FlashcardsEdit = lazy(() =>
-	import('./pages/GestionFlashcards/Flashcards/FlashcardEdit/FlashcardsEdit')
+	import('./pages/GestionFlashcards/Flashcards/FlashcardEdit/FlashcardEdit')
 );
 const FlashcardsParChapitre = lazy(() =>
 	import(
@@ -116,6 +118,15 @@ export const router = createBrowserRouter([
 									{
 										path: 'flashcards/new',
 										errorElement: <Error />,
+										loader: ({ params }) =>
+											flashcardNewLoader(params.chapitreid),
+										element: <FlashcardsEdit />,
+									},
+									{
+										path: 'flashcards/:flashcardid/edit',
+										errorElement: <Error />,
+										loader: ({ params }) =>
+											flashcardEditLoader(params.flashcardid),
 										element: <FlashcardsEdit />,
 									},
 								],

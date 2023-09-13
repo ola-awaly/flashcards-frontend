@@ -1,20 +1,27 @@
 import { useContext } from 'react';
 import styles from './Error.module.scss';
-import { useRouteError } from 'react-router-dom';
+import { useRouteError, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 function Error() {
 	const error = useRouteError();
-	const { setExpired } = useContext(AuthContext);
-	if (error) {
-		console.log(error.message);
+	// const { setExpired } = useContext(AuthContext);
+	// if (error) {
+	// 	console.log(error.message);
 
-		if (error.message && error.message === 'Invalid JWT Token') {
-			setExpired(true);
-		}
-	}
+	// 	if (error.message && error.message === 'Invalid JWT Token') {
+	// 		setExpired(true);
+	// 		console.log('ici');
+	// 	}
+	// }
 
 	return (
 		<div className={styles.errorPage}>
+			{error.message && error.message === 'Invalid JWT Token' ? (
+				<Navigate to="/login" />
+			) : (
+				''
+			)}
+
 			<p>
 				Une erreur est survenue sur le site. Veuillez retourner sur la page
 				d'accueil
