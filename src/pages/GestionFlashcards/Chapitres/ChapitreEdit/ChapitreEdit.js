@@ -3,11 +3,8 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate, useLoaderData } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../../../contexts/AuthContext';
 import { createChapitre, modifierChapitre } from '../../../../apis/chapitres';
 function ChapitreEdit() {
-	const { user } = useContext(AuthContext);
 	const { chapitre, mode } = useLoaderData();
 	console.log(mode);
 	const navigate = useNavigate();
@@ -111,7 +108,13 @@ function ChapitreEdit() {
 						<span className={styles.error}>{errors.general.message}</span>
 					</div>
 				)}
-				<div className={`${styles.ligne} align-items-center`}>
+				<div className={styles.tools}>
+					<button
+						className="btn btn-secondary"
+						onClick={() => navigate(-1)}
+					>
+						Annuler
+					</button>
 					<button className="btn btn-primary" disabled={isSubmitting}>
 						Sauvegarder
 					</button>

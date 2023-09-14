@@ -5,8 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 function Error() {
 	const error = useRouteError();
 	// const { setExpired } = useContext(AuthContext);
-	// if (error) {
-	// 	console.log(error.message);
+	if (error) console.log(error.message);
 
 	// 	if (error.message && error.message === 'Invalid JWT Token') {
 	// 		setExpired(true);
@@ -16,7 +15,9 @@ function Error() {
 
 	return (
 		<div className={styles.errorPage}>
-			{error.message && error.message === 'Invalid JWT Token' ? (
+			{error.message &&
+			(error.message === 'Invalid JWT Token' ||
+				error.message === 'Expired JWT Token') ? (
 				<Navigate to="/login" />
 			) : (
 				''

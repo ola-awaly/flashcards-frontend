@@ -134,7 +134,13 @@ function FlashcardEdit() {
 						<span className={styles.error}>{errors.general.message}</span>
 					</div>
 				)}
-				<div className={`${styles.ligne} align-items-center`}>
+				<div className={styles.tools}>
+					<button
+						className="btn btn-secondary"
+						onClick={() => navigate(-1)}
+					>
+						Annuler
+					</button>
 					<button className="btn btn-primary" disabled={isSubmitting}>
 						Sauvegarder
 					</button>

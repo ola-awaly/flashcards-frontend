@@ -17,7 +17,7 @@ function FlashcardsParChapitre() {
 	};
 	return (
 		<>
-			<h2>Chapitre 1: Introduction</h2>
+			<h2>Les flashcards: {flashcards[0]?.chapitre.titre}</h2>
 			{flashcards && (
 				<ul className={styles.listeFlashcardsParChapitre}>
 					{flashcards.map((fl) => (
