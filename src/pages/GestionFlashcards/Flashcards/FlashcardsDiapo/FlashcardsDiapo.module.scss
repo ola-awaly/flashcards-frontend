@@ -1,0 +1,65 @@
+.diapoItem {
+	width: 250px;
+	height: 250px;
+	perspective: 1000px;
+	display: none;
+	margin: 10px;
+	.inner {
+		position: relative;
+		width: calc(100% - 10px);
+		height: calc(100% - 10px);
+		transition: transform 1s;
+		transform-style: preserve-3d;
+	}
+
+	.pile,
+	.face {
+		position: absolute;
+		width: calc(100% - 10px);
+		height: calc(100% - 10px);
+		backface-visibility: hidden;
+		border: 5px solid var(--white);
+		border-radius: var(--border-radius);
+		color: var(--white);
+		background-color: var(--gray1);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+	.pile {
+		color: var(--black);
+		background-color: var(--white);
+		transform: rotateX(180deg);
+	}
+}
+.clicked {
+	.inner {
+		transform: rotateX(180deg);
+	}
+}
+.active {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.reculer,
+.avancer {
+	color: var(--black);
+	background-color: var(--white);
+	border-radius: 50%;
+	border: 5px solid var(--white);
+	font-size: 104px;
+	cursor: pointer;
+}
+.disabled {
+	background-color: var(--gray-light);
+	border: 5px solid var(--gray-light);
+	cursor: crosshair;
+}
+
+.tools {
+	display: flex;
+	gap: 10px;
+}

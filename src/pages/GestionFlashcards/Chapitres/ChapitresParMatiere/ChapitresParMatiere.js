@@ -61,11 +61,14 @@ function ChapitresParMatiere() {
 				</ul>
 			)}
 			<div className={styles.tools}>
-				<Link className="btn btn-primary" to="chapitre/new">
-					+ Nouveau Chapitre
+				<Link className="icon-btn btn-primary" to="chapitre/new">
+					<i class="fa-solid fa-plus"></i>
 				</Link>
-				<Link className="btn btn-primary" to={`/myflashcards/${user.id}`}>
-					Retour aux matières
+				<Link
+					className="icon-btn btn-primary"
+					to={`/myflashcards/${user.id}`}
+				>
+					<i class="fa-solid fa-rotate-left"></i>
 				</Link>
 			</div>
 		</>

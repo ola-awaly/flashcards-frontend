@@ -59,8 +59,8 @@ function GestionFlashcards() {
 				</ul>
 			)}
 
-			<Link className="btn btn-primary" to="/myflashcards/matiere/new">
-				+ Nouvelle Matière
+			<Link className="icon-btn btn-primary" to="/myflashcards/matiere/new">
+				<i class="fa-solid fa-plus"></i>
 			</Link>
 		</>
 	);

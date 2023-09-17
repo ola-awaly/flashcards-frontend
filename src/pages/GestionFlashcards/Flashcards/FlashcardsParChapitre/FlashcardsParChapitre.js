@@ -53,14 +53,22 @@ function FlashcardsParChapitre() {
 				</ul>
 			)}
 			<div className={styles.tools}>
-				<Link className="btn btn-primary" to="flashcards/new">
-					+ Nouveau Flashcard
+				<Link className="icon-btn btn-primary" to="flashcards/new">
+					<i class="fa-solid fa-plus"></i>
+				</Link>
+
+				<Link
+					className="icon-btn btn-primary"
+					to={`/myflashcards/matiere/${matiereid}/chapitre/${flashcards[0]?.chapitre.id}/diapo`}
+				>
+					<i class="fa-solid fa-chalkboard-user"></i>
 				</Link>
 				<Link
-					className="btn btn-primary"
+					className="icon-btn btn-primary"
 					to={`/myflashcards/matiere/${matiereid}`}
+					alt="retour aux matières"
 				>
-					Retour aux chapitres
+					<i class="fa-solid fa-rotate-left"></i>
 				</Link>
 			</div>
 		</>

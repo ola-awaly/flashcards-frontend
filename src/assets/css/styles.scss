@@ -16,7 +16,8 @@
 	--line-height-xlarge: 40px;
 	--gray-dark: #545454;
 	--gray: #737373;
-	--gray-light: #d9d9d9;
+	--gray-light: #95a5a6;
+	--gray-lighter: #d9d9d9;
 	--border-radius: 4px;
 	--box-shadow: 0 6px 9px 0 rgba(251, 250, 250, 0.7);
 	--box-shadow-primary: 0 6px 9px 0 rgba(12, 192, 223, 0.7);
@@ -116,7 +117,21 @@ main {
 	max-width: 250px;
 	font-weight: 700;
 }
-
+.icon-btn {
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	border: none;
+	min-width: 20px;
+	min-height: 20px;
+	font-weight: 700;
+}
+button.icon-btn {
+	box-sizing: content-box;
+}
 .btn-primary {
 	background-color: var(--primary-color);
 	color: var(--white);

@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import { lazy } from 'react';
 import { rootLaoder } from './loaders/rootLoader';
@@ -12,6 +12,11 @@ import { chapitreEditLoader } from './loaders/chapitreEditLoader';
 import { flashcardsParChapitreLoader } from './loaders/flashcardsParChapitre';
 import { flashcardEditLoader } from './loaders/flashcardEditLoader';
 import { flashcardNewLoader } from './loaders/flashcardNewLoader';
+const FlashcardsDiapo = lazy(() =>
+	import(
+		'./pages/GestionFlashcards/Flashcards/FlashcardsDiapo/FlashcardsDiapo'
+	)
+);
 const FlashcardsEdit = lazy(() =>
 	import('./pages/GestionFlashcards/Flashcards/FlashcardEdit/FlashcardEdit')
 );
@@ -107,6 +112,16 @@ export const router = createBrowserRouter([
 												params.matiereid
 											),
 										element: <FlashcardsParChapitre />,
+									},
+									{
+										path: 'diapo',
+										errorElement: <Error />,
+										loader: ({ params }) =>
+											flashcardsParChapitreLoader(
+												params.chapitreid,
+												params.matiereid
+											),
+										element: <FlashcardsDiapo />,
 									},
 									{
 										path: 'edit',
