@@ -44,11 +44,16 @@ export async function createMatiere(nouvelleMatiere) {
 }
 
 export async function getMatiere(id) {
+	let headers = localStorage.getItem('token')
+		? {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+		  }
+		: {
+				'Content-Type': 'application/json',
+		  };
 	const response = await fetch(API_URL + '/' + id, {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: 'Bearer ' + localStorage.getItem('token'),
-		},
+		headers,
 	});
 	if (response.ok) return response.json();
 	else {

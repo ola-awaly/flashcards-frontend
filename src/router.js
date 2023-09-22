@@ -12,6 +12,8 @@ import { chapitreEditLoader } from './loaders/chapitreEditLoader';
 import { flashcardsParChapitreLoader } from './loaders/flashcardsParChapitre';
 import { flashcardEditLoader } from './loaders/flashcardEditLoader';
 import { flashcardNewLoader } from './loaders/flashcardNewLoader';
+import { matiereLoader } from './loaders/matiereLoader';
+const Matiere = lazy(() => import('./pages/Matiere/Matiere'));
 const Recherche = lazy(() => import('./pages/Recherche/Recherche'));
 const FlashcardsDiapo = lazy(() =>
 	import(
@@ -169,6 +171,12 @@ export const router = createBrowserRouter([
 			{
 				path: 'recherche',
 				element: <Recherche />,
+				errorElement: <Error />,
+			},
+			{
+				path: 'matiere/:matiereid',
+				element: <Matiere />,
+				loader: ({ params }) => matiereLoader(params.matiereid),
 				errorElement: <Error />,
 			},
 			{

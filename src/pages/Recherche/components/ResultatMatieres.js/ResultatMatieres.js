@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { rechercheMatieres } from './../../../../apis/matieres';
+import { Link } from 'react-router-dom';
 function ResultatMatieres({ mot }) {
 	const [listMatieres, setListMatieres] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +35,11 @@ function ResultatMatieres({ mot }) {
 			<ul>
 				{isLoading === false ? (
 					listMatieres.length > 0 ? (
-						listMatieres.map((m) => <li key={m.id}>{m.nom}</li>)
+						listMatieres.map((m) => (
+							<li key={m.id}>
+								<Link to={`/matiere/${m.id}`}>{m.nom}</Link>
+							</li>
+						))
 					) : (
 						'Pas de résultats'
 					)

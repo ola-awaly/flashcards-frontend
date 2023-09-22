@@ -1,10 +1,15 @@
 const API_URL = 'https://127.0.0.1:8000/api/chapitres';
 export async function getChapitresByMatiere(id) {
+	let headers = localStorage.getItem('token')
+		? {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+		  }
+		: {
+				'Content-Type': 'application/json',
+		  };
 	const response = await fetch(API_URL + '?cours.id=' + id, {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: 'Bearer ' + localStorage.getItem('token'),
-		},
+		headers,
 	});
 	if (response.ok) return response.json();
 	else {

@@ -28,6 +28,10 @@
 		margin-left: 20px;
 		li {
 			list-style: circle;
+			a {
+				text-decoration: none;
+				color: var(--black);
+			}
 		}
 		h2 {
 		}
