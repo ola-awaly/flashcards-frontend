@@ -87,3 +87,16 @@ export async function deleteMatiere(id) {
 		throw new Error(await err.message);
 	}
 }
+
+export async function rechercheMatieres(mot) {
+	const response = await fetch(API_URL + '?nom=' + mot, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) return response.json();
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
+}

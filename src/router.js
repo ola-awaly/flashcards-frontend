@@ -12,6 +12,7 @@ import { chapitreEditLoader } from './loaders/chapitreEditLoader';
 import { flashcardsParChapitreLoader } from './loaders/flashcardsParChapitre';
 import { flashcardEditLoader } from './loaders/flashcardEditLoader';
 import { flashcardNewLoader } from './loaders/flashcardNewLoader';
+const Recherche = lazy(() => import('./pages/Recherche/Recherche'));
 const FlashcardsDiapo = lazy(() =>
 	import(
 		'./pages/GestionFlashcards/Flashcards/FlashcardsDiapo/FlashcardsDiapo'
@@ -164,6 +165,11 @@ export const router = createBrowserRouter([
 						element: <MatiereEdit />,
 					},
 				],
+			},
+			{
+				path: 'recherche',
+				element: <Recherche />,
+				errorElement: <Error />,
 			},
 			{
 				path: '*',

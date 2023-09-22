@@ -74,3 +74,16 @@ export async function deleteFlashcard(id) {
 		throw new Error('une erreur');
 	}
 }
+
+export async function rechercheFlashcards(mot) {
+	const response = await fetch(API_URL + '?avant=' + mot, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) return response.json();
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
+}

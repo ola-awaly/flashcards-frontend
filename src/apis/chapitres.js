@@ -73,3 +73,16 @@ export async function deleteChapitre(id) {
 		throw new Error(await err.message);
 	}
 }
+
+export async function rechercheChapitres(mot) {
+	const response = await fetch(API_URL + '?titre=' + mot, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.ok) return response.json();
+	else {
+		let err = await response.json();
+		throw new Error(await err.message);
+	}
+}

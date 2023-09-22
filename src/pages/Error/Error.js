@@ -1,7 +1,5 @@
-import { useContext } from 'react';
 import styles from './Error.module.scss';
 import { useRouteError, Navigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
 function Error() {
 	const error = useRouteError();
 	// const { setExpired } = useContext(AuthContext);
